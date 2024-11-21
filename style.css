@@ -98,9 +98,11 @@ form {
 
 .number-field {
     width: 25px;
+    caret-color: transparent;
     padding: 10px;
     background-color: #333;
     color: #fff;
+    text-align: center;
     font-size: 30px;
     display: flex;
     align-items: center;

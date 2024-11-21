@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gues the number</title>
+    <title>Hack the pin code</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 
@@ -35,108 +35,10 @@
         </div>
     </div>
 
-    <script>
-        function getRandomNumber(max, min) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-
-        let form = document.querySelector('form');
-        let counter = document.querySelector('.counter');
-        let fields = document.querySelectorAll('.number-field');
-        let attemptsContainer = document.querySelector('.attempts-container');
-        let modal = document.getElementById('modal');
-        let modalMessage = document.getElementById('modal-message');
-        let modalCloseBtn = document.getElementById('modal-close-btn');
-        let maxAttempts = 4;
-        let attemptCount = 0;
-        let numbers = [];
-
-        for (let i = 0; i < 4; i++) {
-            let num;
-            do {
-                num = getRandomNumber(-1, 10);
-            } while (numbers.includes(num));
-            numbers.push(num);
-        }
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            attemptCount++;
-
-            counter.textContent = `Max number: 4. Your gues: ${attemptCount}`;
-
-            let attemptRow = document.createElement('div');
-            attemptRow.classList.add('attempt-row');
-
-            let allCorrect = true;
-
-            for (let i = 0; i < fields.length; i++) {
-                let userInput = Number(fields[i].value);
-                let correctNumber = numbers[i];
-
-                let indicator = document.createElement('span');
-                indicator.textContent = userInput;
-
-                if (userInput === correctNumber) {
-                    fields[i].style.color = 'yellowgreen';
-                    indicator.style.background = 'yellowgreen';
-                } else if (numbers.includes(userInput)) {
-                    fields[i].style.color = '#fff';
-                    indicator.style.background = 'wheat';
-                    allCorrect = false;
-                } else {
-                    fields[i].style.color = '#fff';
-                    indicator.style.background = 'tomato';
-                    allCorrect = false;
-                }
-
-                attemptRow.appendChild(indicator);
-            }
-
-            attemptsContainer.appendChild(attemptRow);
-
-            if (allCorrect) {
-                showModal('You Win! 🏆');
-            } else if (attemptCount >= maxAttempts) {
-                showModal('You Lose! The correct <br /> numbers were: ' + numbers.join(', ') + ' ✅');
-            }
-        });
-
-        fields.forEach((field, index) => {
-            field.addEventListener('input', (e) => {
-                if (field.value.length > 1) {
-                    field.value = field.value.slice(0, 1);
-                }
-            });
-
-            field.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') {
-                    if (index > 0) {
-                        fields[index - 1].focus();
-                    }
-                } else if (e.key === 'ArrowRight') {
-                    if (index < fields.length - 1) {
-                        fields[index + 1].focus();
-                    }
-                }
-            });
-        });
-
-        window.addEventListener('load', () => {
-            fields[0].focus();
-            counter.textContent = `Max number: 4. Your gues: ${attemptCount}`;
-        });
-
-        function showModal(message) {
-            modalMessage.innerHTML = message;
-            modal.style.display = 'block';
-        }
-
-        modalCloseBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-            location.reload();
-        });
-    </script>
+    <audio class="bg-audio" src="" autoplay loop></audio>
+    <audio class="audio-game" src="" autoplay></audio>
+    <audio class="click" src="" autoplay></audio>
+    <script src="./app.js"></script>
 </body>
 
 </html>
